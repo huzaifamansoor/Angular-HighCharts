@@ -7,6 +7,7 @@ import { DonutChartComponent } from './components/charts/donut-chart/donut-chart
 import { HeatmapChartComponent } from './components/charts/heatmap-chart/heatmap-chart.component';
 
 const routes: Routes = [
+  {path: '', component: DonutChartComponent},
   {path: 'gauge', component: GaugeChartComponent},
   {path: 'donut', component: DonutChartComponent},
   {path: 'area', component: AreaChartComponent},
