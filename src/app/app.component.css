@@ -1,0 +1,21 @@
+.chart-content {
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  
+  .chart-content .chart__title {
+    color: #8493a8;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  
+  .chart-content .chart__score {
+    font-size: 43px;
+    color: #54657e;
+    font-weight: 600;
+    line-height: 40px;
+    border-bottom: 2px solid #e7e7e7;
+    margin-bottom: 5px;
+  }
+  

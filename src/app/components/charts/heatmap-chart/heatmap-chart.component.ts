@@ -5,7 +5,7 @@ import Tree from 'highcharts/modules/treemap';
 import Heatmap from 'highcharts/modules/heatmap';
 More(Highcharts);
 Tree(Highcharts);
-Heatmap(Highcharts); 
+Heatmap(Highcharts);
 
 @Component({
   selector: 'app-heatmap-chart',
@@ -19,39 +19,76 @@ export class HeatmapChartComponent implements OnInit {
   updateFlag = false;
   oneToOneFlag = true;
   runOutsideAngular = false;
+
+  // chart Option
+  data = [44.7, 59.2, 65];
+  currentLangId = 'en-CA';
+  xCategories = ['Q20', 'Q22', 'Q21'];
+  text =  'YOUR LOWEST SCORING QUESTIONS';
+
   chartOptions =  {
-    colorAxis: {
-      minColor: '#FFFFF1',
-      maxColor: Highcharts.getOptions().colors[0]
+    title: {
+      text: this.text,
+      style: {
+          fontFamily: 'open sans',
+          fontSize: '12px'
+      }
   },
+  tooltip: {
+      formatter: function () {
+          return '<b>' + this.x + '</b>: ' + (this.currentLangId && this.currentLangId.toLowerCase() == "fr-ca" ? Highcharts.numberFormat(this.y,1).toString().replace(".", ",") : Highcharts.numberFormat(this.y,1) );
+      }
+  },
+  credits:
+  {
+      enabled: false
+  },
+  exporting: {
+      enabled: false
+  },
+  plotOptions: {
+      column: {
+           cursor: 'pointer',
+          enableMouseTracking: true,
+          dataLabels: {
+              enabled: true,
+              format: '{y:.1f}'
+          }
+      }
+  },
+  xAxis: {
+      categories: this.xCategories,
+      labels:
+          {
+              style: {
+                  fontFamily: 'open sans',
+                  cursor: 'pointer'
+              },
+              useHTML: true,
+              formatter: function()   {
+
+                  return "<div class='AOIq legends--improvement' id='label_"+this.value+"_@chartId'>" +this.value+ "</div>";
+              }
+          }
+  },
+  yAxis: {
+      enabled:false,
+      title: {
+          text: ''
+      }
+  },
+
+  colors: [
+      '#27aae1'
+  ],
   series: [{
-      type: 'treemap',
-      layoutAlgorithm: 'squarified',
-      data: [{
-          name: 'Central',
-          value: 3,
-          colorValue: 1
-      }, {
-          name: 'Qubec',
-          value: 2,
-          colorValue: 2
-      }, {
-          name: 'pacific',
-          value: 4,
-          colorValue: 3
-      }, {
-          name: 'Prairie',
-          value: 3,
-          colorValue: 4
-      }, {
-          name: 'Atlantic',
-          value: 2,
-          colorValue: 5
-      }]
-  }],
-  title: {
-      text: 'Heat Map'
-  }
+      type: 'column',
+      colorByPoint: true,
+      borderRadiusTopLeft: 3,
+      borderRadiusTopRight: 3,
+      data: this.data,
+      showInLegend: false
+  }]
   };
 
   chartCallback = (chart) => {};

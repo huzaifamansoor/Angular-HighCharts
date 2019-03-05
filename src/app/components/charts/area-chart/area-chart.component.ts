@@ -16,52 +16,113 @@ export class AreaChartComponent implements OnInit {
   updateFlag = false;
   oneToOneFlag = true;
   runOutsideAngular = false;
+
+  // chart Options
+  xCategories = [
+    '[Mar 18]',
+    '[Apr 18]',
+    '[May 18]',
+    '[Jun 18]',
+    '[Jul 18]',
+    '[Aug 18]',
+    '[Sep 18]',
+    '[Oct 18]',
+    '[Nov 18]',
+    '[Dec 18]',
+    '[Jan 19]',
+    '[Feb 19]',
+    '[Mar 19]'];
+  tooltip = '';
+
+  series = [
+    {
+       name: 'National',
+       showInLegend: true,
+       marker: {
+          symbol: 'square',
+          radius: 4,
+          lineColor: '#666666',
+          backgroundColor: 'white',
+          lineWidth: 1
+       },
+       dataLabels: {
+          enabled: false
+       },
+       point: {
+          events: {}
+       },
+       color: {
+          linearGradient: {
+             x1: 0,
+             y1: 0,
+             x2: 1,
+             y2: 0
+          },
+          stops: [
+             [
+                0,
+                "rgb(201, 54, 199)"
+             ],
+             [
+                1,
+                "rgb(277, 80, 146)"
+             ]
+          ]
+       },
+       data: [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          82,
+          0,
+          0,
+          0,
+          0,
+          0,
+          82
+       ]
+    }
+ ];
+
   chartOptions =  {
     chart: {
-      type: 'area'
+      type: 'spline'
   },
   title: {
-      text: 'Area Chart'
-  },
-  subtitle: {
       text: ''
   },
+  credits: { enabled: false },
+  exporting: { enabled: false },
   xAxis: {
-      categories: ['1', '2', '3', '4', '5', '6', '7'],
-      tickmarkPlacement: 'on',
-      title: {
-          enabled: false
-      }
+      categories: this.xCategories
   },
   yAxis: {
       title: {
-          text: 'Y-Axis'
+          text: ''
       },
-      labels: {
-          formatter: function () {
-              return this.value / 1000;
-          }
-      }
+      min: -100,
+      max: 100 // this.max
   },
   tooltip: {
-      split: true,
-      valueSuffix: ' A-Axis'
+      shared: true,
+      formatter: function () {
+          this.points.forEach((point) => {
+              this.tooltip += '<b>' + point.series.name + '</b>: ' + Highcharts.numberFormat(point.y,1) + '<br/>';
+          });
+          return '<text>' + this.tooltip + '</text>';
+        }
   },
   plotOptions: {
-      area: {
-          stacking: 'normal',
-          lineColor: '#666666',
-          lineWidth: 1,
-          marker: {
-              lineWidth: 1,
-              lineColor: '#666666'
+      spline: {
+          dataLabels: {
+              enabled: true
           }
       }
   },
-  series: [{
-      name: 'Point',
-      data: [163, 203, 276, 408, 547, 729, 628]
-  }]
+  series: this.series,
   };
 
   chartCallback = (chart) => {};
