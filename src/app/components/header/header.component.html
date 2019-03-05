@@ -1,0 +1,23 @@
+<mat-toolbar color="primary">
+  <span><a [routerLink]="['/gauge']" routerLinkActive="mat-accent">Charts</a></span>
+
+  <span class="spacer"></span>
+  <ul>
+    <li>
+      <a mat-button [routerLink]="['/donut']" routerLinkActive="primary" >Donut Chart</a>
+    </li>
+    <span class="spacer"></span>
+    <li>
+      <a mat-button [routerLink]="['/area']" routerLinkActive="primary" >Area Chart</a>
+    </li>
+    <span class="spacer"></span>
+    <li>
+      <a mat-button [routerLink]="['/heatmap']" routerLinkActive="primary" >HeatMap Chart</a>
+    </li>
+    <span class="spacer"></span>
+    <li>
+      <a mat-button [routerLink]="['/gauge']" routerLinkActive="primary" >Guage Chart</a>
+    </li>
+    <span class="spacer"></span>
+  </ul>
+  </mat-toolbar>
