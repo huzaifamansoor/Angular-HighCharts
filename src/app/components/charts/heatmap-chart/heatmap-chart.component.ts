@@ -72,7 +72,7 @@ export class HeatmapChartComponent implements OnInit {
           }
   },
   yAxis: {
-      enabled:false,
+      enabled: false,
       title: {
           text: ''
       }

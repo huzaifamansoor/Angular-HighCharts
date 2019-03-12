@@ -143,8 +143,7 @@ export class GaugeChartComponent implements OnInit {
         //percentageDecimals: 2,
         // backgroundColor: "rgba(255,255,255,1)",
         formatter: function () {
-
-            return '<span style="color:' + this.series.color + '">\u25CF</span> ' + (this.series.name === this.text ? this.fullTitle : this.series.name) + ' : <b>' + (this.series.name === this.text ? this.actual : this.target) + '</b>';
+            return '<span style=" color:' + this.series.color + '">\u25CF</span> ' + (this.series.name === this.text ? this.fullTitle : this.series.name) + ' : <b>' + (this.series.name === this.text ? this.actual : this.target) + '</b>';
         }
     },
     series: [{

@@ -16,7 +16,8 @@ export class DonutChartComponent implements OnInit {
   oneToOneFlag = true;
   runOutsideAngular = false;
   // chart Option
-  detail = `<span class="chart-content" id="pieChartInfoText"><span class="chart__title"><a class="chart__link">KPI</a></span><span class="chart__score" title="(Count Of Issues Closed Within Target - Count Of Issues Confirmed Unresolved) / Count Of Issues">42.6<small>%</small></span><span class="chart__count">Alert Count</span><a class="chart__link">94</a></span>`;
+  // detail = `<span class="chart-content" id="pieChartInfoText"><span class="chart__title"><a class="chart__link">KPI</a></span><span class="chart__score" title="(Count Of Issues Closed Within Target - Count Of Issues Confirmed Unresolved) / Count Of Issues">42.6<small>%</small></span><span class="chart__count">Alert Count</span><a class="chart__link">94</a></span>`;
+  detail = '<a style="font-size: 16px;display: block;color: #59b9ef;box-sizing: border-box;font-weight: 600;cursor: pointer;text-decoration: none;text-align: center;" >KPI</a><span style="font-size: 43px;color: #54657e;font-weight: 600;line-height: 40px;border-bottom: 2px solid #e7e7e7;margin-bottom: 5px;display: block;box-sizing: border-box;text-align: center;cursor: pointer;" title="(Count Of Issues Closed Within Target - Count Of Issues Confirmed Unresolved) / Count Of Issues">42.6<small>%</small></span><span style="color: #8493a8;font-size: 12px;display: block;box-sizing: border-box;text-align: center;cursor: pointer;">Alert Count</span><a style="font-size: 16px;display: block;color: #59b9ef;box-sizing: border-box;font-weight: 600;cursor:pointer;text-decoration: none;text-align: center;">94</a>';
   chkToggle = false;
 
   myData = [
@@ -29,21 +30,27 @@ export class DonutChartComponent implements OnInit {
   chartOptions =  {
     chart: {
         height: 250,
-        margin: [0, 0, 0, 0]
-    },
+        margin: [0, 0, 0, 0],
+    }
+    ,
     exporting: {
         enabled: false
     },
     title: {
         useHTML: true,
         text: this.detail,
+        // text: 'KPI <br> 42.6% ',
         verticalAlign: 'middle',
         floating: false,
-        size: '100%',
+        size: '16px',
         align: 'center',
         y: -40,
+        style: {
+          align: 'center',
+          cursor: 'pointer',
+          color: '#8493a8',
+     }
     },
-
     credits: {
         enabled: false
     },
